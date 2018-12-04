@@ -32,7 +32,7 @@ const truckSchema = new Schema({
         type: Number,
     }, 
     boughtDate: {
-        type: Date
+        type: String
     }, 
     registration: {
         type: String,
@@ -47,6 +47,7 @@ const truckSchema = new Schema({
         default: false
     },
     tires: [{
+         _id: false,
         currentTires: { type: String },
         spares: { type: String },
         boltPattern: {
@@ -56,10 +57,12 @@ const truckSchema = new Schema({
         victorsSpares: { type: String }
     }],
     keys: [{
+        _id: false,
         keyCodeUpdated: { type: Boolean },
         numberOfKeysInLockbox: { type: Number }
     }],
     status: [{
+        _id: false,
         statusLevel: {
             type: String, 
             enum: [ 'In shop', 'Out of service', 'Needs to come in next', 'In service', 'Pending']
