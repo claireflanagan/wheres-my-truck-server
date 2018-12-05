@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import Truck from '../../models/truck'
-import truck from '../../models/truck';
-import { runInNewContext } from 'vm';
+import Truck from '../../models/truck';
 
 export default Router()
     .post('/', (req, res) => {

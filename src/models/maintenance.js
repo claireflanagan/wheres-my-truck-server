@@ -1,15 +1,16 @@
+const mongoose = require('mongoose');
 import { Schema, model } from 'mongoose';
 
 const maintenanceSchema = new Schema({
     dateReported: {
-        type: Date,
+        type: String
     },
     user: {
         type: String,
         required: true
     },
     truckId: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        type: mongoose.Schema.Types.ObjectId, ref: 'Truck',
         required: true
     },
     issueDescription: {
@@ -19,14 +20,14 @@ const maintenanceSchema = new Schema({
     levelOfUrgency: {
         type: String,
         enum: ['Very Urgent', 'Moderately Urgent', 'Not Urgent', 'Unknown'],
-        required: true
+        default: 'Unknown'
     },
     type: {
         type: String,
         enum: ['Routine', 'Corrective']
     },
     dateResolved: {
-        type: Date
+        type: String
     },
     descriptionOfMaintenancePerformed: {
         type: String

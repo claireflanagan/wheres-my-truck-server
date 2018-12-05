@@ -19,6 +19,65 @@ describe('truck routes', () => {
         return mongoose.connection.dropCollection('trucks').catch(() => {});
     });
 
+    const truck2 = {
+            name: 'TruckTwo', 
+            location: 'the store', 
+            vin: '1HGBH41JXMN109188', 
+            plates: 'AZ - 29900J', 
+            year: 1998, 
+            make: 'Toyota', 
+            model: '4Runner', 
+            tireSize: 30, 
+            boughtDate: '03/03/2010', 
+            registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
+            insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
+            inUse: false,
+            tires: [{
+                currentTires: 'Goodyear',
+                spares: 'two spares',
+                boltPattern: 'Metric',
+                victorsSpares: 'yes'
+            }],
+            keys: [{
+                keyCodeUpdated: true,
+                numberOfKeysInLockbox: 3
+            }],
+            status: [{
+                statusLevel: 'In service',
+                statusNotes: 'Oil changed needed soon'
+            }],
+            thingsToKnow: 'Must wiggle key seven times before starting the car'
+    }
+    const truck3 = {
+            name: 'TruckThree', 
+            location: 'the office', 
+            vin: '1HGBH41JXMN109086', 
+            plates: 'AZ - 29991J', 
+            year: 1994, 
+            make: 'Toyota', 
+            model: '4Runner', 
+            tireSize: 25, 
+            boughtDate: '03/03/2010', 
+            registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
+            insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
+            inUse: false,
+            tires: [{
+                currentTires: 'Goodyear',
+                spares: 'two spares',
+                boltPattern: 'Metric',
+                victorsSpares: 'yes'
+            }],
+            keys: [{
+                keyCodeUpdated: true,
+                numberOfKeysInLockbox: 3
+            }],
+            status: [{
+                statusLevel: 'In service',
+                statusNotes: 'Oil changed needed soon'
+            }],
+            thingsToKnow: 'Must wiggle key seven times before starting the car'
+    }
+
     it('can create a new truck', () => {
         const truck = {
             name: 'TruckOne', 
@@ -62,64 +121,7 @@ describe('truck routes', () => {
     });
 
     it('can get all trucks', () => {
-        const truck2 = {
-            name: 'TruckTwo', 
-            location: 'the store', 
-            vin: '1HGBH41JXMN109188', 
-            plates: 'AZ - 29900J', 
-            year: 1998, 
-            make: 'Toyota', 
-            model: '4Runner', 
-            tireSize: 30, 
-            boughtDate: '03/03/2010', 
-            registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
-            insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
-            inUse: false,
-            tires: [{
-                currentTires: 'Goodyear',
-                spares: 'two spares',
-                boltPattern: 'Metric',
-                victorsSpares: 'yes'
-            }],
-            keys: [{
-                keyCodeUpdated: true,
-                numberOfKeysInLockbox: 3
-            }],
-            status: [{
-                statusLevel: 'In service',
-                statusNotes: 'Oil changed needed soon'
-            }],
-            thingsToKnow: 'Must wiggle key seven times before starting the car'
-        }
-        const truck3 = {
-            name: 'TruckThree', 
-            location: 'the office', 
-            vin: '1HGBH41JXMN109086', 
-            plates: 'AZ - 29991J', 
-            year: 1994, 
-            make: 'Toyota', 
-            model: '4Runner', 
-            tireSize: 25, 
-            boughtDate: '03/03/2010', 
-            registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
-            insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
-            inUse: false,
-            tires: [{
-                currentTires: 'Goodyear',
-                spares: 'two spares',
-                boltPattern: 'Metric',
-                victorsSpares: 'yes'
-            }],
-            keys: [{
-                keyCodeUpdated: true,
-                numberOfKeysInLockbox: 3
-            }],
-            status: [{
-                statusLevel: 'In service',
-                statusNotes: 'Oil changed needed soon'
-            }],
-            thingsToKnow: 'Must wiggle key seven times before starting the car'
-        }
+        
         return Promise.all([createTruck(truck2), createTruck(truck3)])
             .then(([truck2Created, truck3Created]) => {
                 return Promise.all([
@@ -137,48 +139,118 @@ describe('truck routes', () => {
     });
 
     it('can get a truck by id', () => {
-        const truck4 = {
-            name: 'TruckFour', 
-            location: 'the office', 
-            vin: '1HGBH41JXMN109086', 
-            plates: 'AZ - 29991J', 
-            year: 1994, 
-            make: 'Toyota', 
-            model: '4Runner', 
-            tireSize: 25, 
-            boughtDate: '03/03/2010', 
-            registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
-            insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
-            inUse: false,
-            tires: [{
-                currentTires: 'Goodyear',
-                spares: 'two spares',
-                boltPattern: 'Metric',
-                victorsSpares: 'yes'
-            }],
-            keys: [{
-                keyCodeUpdated: true,
-                numberOfKeysInLockbox: 3
-            }],
-            status: [{
-                statusLevel: 'In service',
-                statusNotes: 'Oil changed needed soon'
-            }],
-            thingsToKnow: 'Must wiggle key seven times before starting the car'
-        }
-
-        return createTruck(truck4)
-        .then((truck4Created) => {
-            console.log('t4', truck4Created);
+        return createTruck(truck3)
+        .then((truck3Created) => {
+            console.log('t4', truck3Created);
             return Promise.all([
-                Promise.resolve(truck4Created),
-                request(app).get(`/api/trucks/${truck4Created._id}`)
+                Promise.resolve(truck3Created),
+                request(app).get(`/api/trucks/${truck3Created._id}`)
             ]);
         })
-        .then(([truck4Created, res]) => {
+        .then(([truck3Created, res]) => {
             const truck = res.body;
-            expect(truck).toEqual(truck4Created);
+            expect(truck).toEqual(truck3Created);
         })
     });
+
+});
+
+describe('maintenance routes', () => {
+
+    beforeEach(() => {
+        return mongoose.connection.dropCollection('trucks').catch(() => {})
+    });
+
+    const truck2 = {
+        name: 'TruckTwo', 
+        location: 'the store', 
+        vin: '1HGBH41JXMN109188', 
+        plates: 'AZ - 29900J', 
+        year: 1998, 
+        make: 'Toyota', 
+        model: '4Runner', 
+        tireSize: 30, 
+        boughtDate: '03/03/2010', 
+        registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
+        insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
+        inUse: false,
+        tires: [{
+            currentTires: 'Goodyear',
+            spares: 'two spares',
+            boltPattern: 'Metric',
+            victorsSpares: 'yes'
+        }],
+        keys: [{
+            keyCodeUpdated: true,
+            numberOfKeysInLockbox: 3
+        }],
+        status: [{
+            statusLevel: 'In service',
+            statusNotes: 'Oil changed needed soon'
+        }],
+        thingsToKnow: 'Must wiggle key seven times before starting the car'
+    }
+    const truck3 = {
+        name: 'TruckThree', 
+        location: 'the office', 
+        vin: '1HGBH41JXMN109086', 
+        plates: 'AZ - 29991J', 
+        year: 1994, 
+        make: 'Toyota', 
+        model: '4Runner', 
+        tireSize: 25, 
+        boughtDate: '03/03/2010', 
+        registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg', 
+        insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
+        inUse: false,
+        tires: [{
+            currentTires: 'Goodyear',
+            spares: 'two spares',
+            boltPattern: 'Metric',
+            victorsSpares: 'yes'
+        }],
+        keys: [{
+            keyCodeUpdated: true,
+            numberOfKeysInLockbox: 3
+        }],
+        status: [{
+            statusLevel: 'In service',
+            statusNotes: 'Oil changed needed soon'
+        }],
+        thingsToKnow: 'Must wiggle key seven times before starting the car'
+    }
+    let createdTrucks = [];
+
+    beforeEach(() => {
+        return Promise.all([createTruck(truck2), createTruck(truck3)])
+            .then(created => {
+                createdTrucks = created;
+            });
+    })
+
+    it('can create a new maintenance', () => {
+        const maintenance = {
+            dateReported: '01/01/1999',
+            user: 'User1',
+            truckId: createdTrucks[0]._id,
+            issueDescription: 'Power steering not working',
+            levelOfUrgency: 'Not Urgent',
+            type: 'Corrective',
+            dateResolved: '01/01/2010',
+            descriptionOfMaintenancePerformed: 'Power steering fixed',
+            issueOpen: false
+        }
+        return request(app)
+            .post('/api/maintenances')
+            .send(maintenance)
+            .then(res => {
+                expect(res.body).toEqual({
+                    ...maintenance,
+                    _id: expect.any(String),
+                    __v: 0
+                });
+            });
+    });
+
 
 });
