@@ -14,6 +14,13 @@ const createTruck = truck => {
     .then(res => res.body);
 }
 
+const createMaintenance = maintenance => {
+    return request(app)
+    .post('/api/maintenances')
+    .send(maintenance)
+    .then(res => res.body);
+}
+
 describe('truck routes', () => {
     beforeEach(() => {
         return mongoose.connection.dropCollection('trucks').catch(() => {});
@@ -158,7 +165,7 @@ describe('truck routes', () => {
 describe('maintenance routes', () => {
 
     beforeEach(() => {
-        return mongoose.connection.dropCollection('trucks').catch(() => {})
+        return mongoose.connection.dropCollection('maintenances').catch(() => {})
     });
 
     const truck2 = {
@@ -189,7 +196,7 @@ describe('maintenance routes', () => {
             statusNotes: 'Oil changed needed soon'
         }],
         thingsToKnow: 'Must wiggle key seven times before starting the car'
-    }
+    };
     const truck3 = {
         name: 'TruckThree', 
         location: 'the office', 
@@ -218,16 +225,47 @@ describe('maintenance routes', () => {
             statusNotes: 'Oil changed needed soon'
         }],
         thingsToKnow: 'Must wiggle key seven times before starting the car'
-    }
+    };
     let createdTrucks = [];
+    let createdMaintenances = [];
 
+    const maintenance2 = {
+        dateReported: '01/01/1999',
+        user: 'User2',
+        issueDescription: 'Brakes not working',
+        levelOfUrgency: 'Not Urgent',
+        type: 'Corrective',
+        dateResolved: '01/01/2010',
+        descriptionOfMaintenancePerformed: 'Brakes fixed',
+        issueOpen: false
+    };
+    const maintenance3 = {
+        dateReported: '01/01/1999',
+        user: 'User1',
+        issueDescription: 'Windshield not working',
+        levelOfUrgency: 'Not Urgent',
+        type: 'Corrective',
+        dateResolved: '01/01/2010',
+        descriptionOfMaintenancePerformed: 'Windshield fixed',
+        issueOpen: false
+    };
+    
     beforeEach(() => {
         return Promise.all([createTruck(truck2), createTruck(truck3)])
-            .then(created => {
-                createdTrucks = created;
-            });
+        .then(created => {
+            createdTrucks = created;
+            maintenance2.truckId = createdTrucks[0]._id;
+            maintenance3.truckId = createdTrucks[0]._id;
+        });
     })
-
+    
+    beforeEach(() => {
+        return Promise.all([createMaintenance(maintenance2), createMaintenance(maintenance3)])
+        .then(created => {
+            createdMaintenances = created;
+        });
+    })
+    
     it('can create a new maintenance', () => {
         const maintenance = {
             dateReported: '01/01/1999',
@@ -251,6 +289,17 @@ describe('maintenance routes', () => {
                 });
             });
     });
+
+    it('can get all maintenances for a truck', () => {
+        
+        return request(app)
+            .get(`/api/maintenances/${createdTrucks[0]._id}`)
+            .then((res) => {
+                expect(res.body).toHaveLength(2);
+                // expect(maintenances).toContainEqual(maintenance2);
+                // expect(maintenances).toContainEqual(maintenance3);
+            });
+    })
 
 
 });
