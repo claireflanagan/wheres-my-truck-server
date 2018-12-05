@@ -36,11 +36,9 @@ const truckSchema = new Schema({
     }, 
     registration: {
         type: String,
-        required: true
     }, 
     insurance: {
         type: String,
-        required: true
     },
     inUse: {
         type: Boolean,
