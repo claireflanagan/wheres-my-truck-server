@@ -296,8 +296,8 @@ describe('maintenance routes', () => {
             .get(`/api/maintenances/${createdTrucks[0]._id}`)
             .then((res) => {
                 expect(res.body).toHaveLength(2);
-                // expect(maintenances).toContainEqual(maintenance2);
-                // expect(maintenances).toContainEqual(maintenance3);
+                expect(res.body).toContainEqual({_id: expect.any(String), __v: 0, ...maintenance2});
+                expect(res.body).toContainEqual({_id: expect.any(String), __v: 0, ...maintenance3});
             });
     })
 
