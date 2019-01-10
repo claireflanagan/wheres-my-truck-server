@@ -3,7 +3,6 @@ import Truck from '../../models/truck';
 
 export default Router()
     .post('/', (req, res) => {
-        console.log('post truck req.body', req.body.name);
         Truck.create(req.body)
             .then(truck => res.json(truck))
             .catch(err => console.error(err)); 

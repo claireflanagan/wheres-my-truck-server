@@ -63,7 +63,7 @@ const truckSchema = new Schema({
         _id: false,
         statusLevel: {
             type: String, 
-            enum: [ 'In shop', 'Out of service', 'Needs to come in next', 'In service', 'Pending']
+            enum: [ 'In shop', 'Out of service', 'Needs to come in next', 'In service']
         },
         statusNotes: { type: String }
     }],

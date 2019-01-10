@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import { Schema, model } from 'mongoose';
+import { Schema, model, Mongoose } from 'mongoose';
 
 const maintenanceSchema = new Schema({
     dateReported: {
@@ -13,7 +13,7 @@ const maintenanceSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Truck',
         required: true
     },
-    issueDescription: {
+    issueDescription: { //redundant?
         type: String,
         required: true
     },
@@ -29,12 +29,27 @@ const maintenanceSchema = new Schema({
     dateResolved: {
         type: String
     },
-    descriptionOfMaintenancePerformed: {
-        type: String
-    },
+    descriptionOfMaintenancePerformed: [{
+        _id: false,
+        description: {
+            type: String
+        },
+        receipt: {
+            type: String
+        },
+        cost: {
+            type: Number
+        },
+        garage: {
+            type: String
+        }
+    }],
     issueOpen: {
         type: Boolean,
         default: true
+    },
+    issueId: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Issue'
     }
 })
 

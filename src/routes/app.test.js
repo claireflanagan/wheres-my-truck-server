@@ -162,6 +162,33 @@ describe('truck routes', () => {
 
 });
 
+describe('trip routes', () => {
+    beforeEach(() => {
+        return mongoose.connection.dropCollection('trips').catch(() => {});
+    });
+    
+    it('can create a new trip', () => {
+        const trip = {
+            startDate: '1/12/19',
+            endDate: '1/14/19',
+            tripPurpose: 'routine water drop',
+            gotLocation: 'Tucson Office',
+            endLocation: 'School'
+        }
+
+        return request(app)
+            .post('/api/trips')
+            .send(trip)
+            .then(res => {
+                expect(res.body).toEqual({
+                    ...trip,
+                    _id: expect.any(String),
+                    __v: 0
+                });
+            });
+    })
+});
+
 describe('maintenance routes', () => {
 
     beforeEach(() => {
@@ -236,7 +263,10 @@ describe('maintenance routes', () => {
         levelOfUrgency: 'Not Urgent',
         type: 'Corrective',
         dateResolved: '01/01/2010',
-        descriptionOfMaintenancePerformed: 'Brakes fixed',
+        descriptionOfMaintenancePerformed: [{
+            description: 'Brakes fixed',
+            cost: 231.23
+        }],
         issueOpen: false
     };
     const maintenance3 = {
@@ -246,7 +276,10 @@ describe('maintenance routes', () => {
         levelOfUrgency: 'Not Urgent',
         type: 'Corrective',
         dateResolved: '01/01/2010',
-        descriptionOfMaintenancePerformed: 'Windshield fixed',
+        descriptionOfMaintenancePerformed: [{
+            description: 'Windshield fixed',
+            cost: 990.90
+        }],
         issueOpen: false
     };
     
@@ -275,7 +308,10 @@ describe('maintenance routes', () => {
             levelOfUrgency: 'Not Urgent',
             type: 'Corrective',
             dateResolved: '01/01/2010',
-            descriptionOfMaintenancePerformed: 'Power steering fixed',
+            descriptionOfMaintenancePerformed: [{
+                description: 'Power steering fixed',
+                cost: 343.20
+            }],
             issueOpen: false
         }
         return request(app)
