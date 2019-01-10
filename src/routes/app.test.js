@@ -181,6 +181,14 @@ describe('trip routes', () => {
         endLocation: 'School'
     }
 
+    const trip2 = {
+        startDate: '1/12/18',
+        endDate: '1/14/18',
+        tripPurpose: 'routine water drop',
+        gotLocation: 'School',
+        endLocation: 'School'
+    }
+
     it('can create a new trip', () => {
         const trip = {
             startDate: '1/12/19',
@@ -199,6 +207,23 @@ describe('trip routes', () => {
                     _id: expect.any(String),
                     __v: 0
                 });
+            });
+    })
+
+    it('can get all trips', () => {
+        return Promise.all([createTrip(trip1), createTrip(trip2)])
+            .then(([truck1Created, truck2Created]) => {
+                return Promise.all([
+                    Promise.resolve(truck1Created),
+                    Promise.resolve(truck2Created),
+                    request(app).get('/api/trips')
+                ]);
+            })
+            .then(([truck1Created, truck2Created, res]) => {
+                const trips = res.body;
+                expect(trips).toHaveLength(2);
+                expect(trips).toContainEqual(truck1Created);
+                expect(trips).toContainEqual(truck2Created);
             });
     })
 
