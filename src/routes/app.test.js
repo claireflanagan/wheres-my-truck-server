@@ -21,6 +21,13 @@ const createMaintenance = maintenance => {
     .then(res => res.body);
 }
 
+const createTrip = trip => {
+    return request(app)
+    .post('/api/trips')
+    .send(trip)
+    .then(res => res.body);
+}
+
 describe('truck routes', () => {
     beforeEach(() => {
         return mongoose.connection.dropCollection('trucks').catch(() => {});
@@ -148,7 +155,6 @@ describe('truck routes', () => {
     it('can get a truck by id', () => {
         return createTruck(truck3)
         .then((truck3Created) => {
-            console.log('t4', truck3Created);
             return Promise.all([
                 Promise.resolve(truck3Created),
                 request(app).get(`/api/trucks/${truck3Created._id}`)
@@ -167,6 +173,14 @@ describe('trip routes', () => {
         return mongoose.connection.dropCollection('trips').catch(() => {});
     });
     
+    const trip1 = {
+        startDate: '1/12/19',
+        endDate: '1/14/19',
+        tripPurpose: 'routine water drop',
+        gotLocation: 'Tucson Office',
+        endLocation: 'School'
+    }
+
     it('can create a new trip', () => {
         const trip = {
             startDate: '1/12/19',
@@ -187,6 +201,20 @@ describe('trip routes', () => {
                 });
             });
     })
+
+    it('can get a trip by id', () => {
+        return createTrip(trip1)
+        .then((trip1Created) => {
+            return Promise.all([
+                Promise.resolve(trip1Created),
+                request(app).get(`/api/trips/${trip1Created._id}`)
+            ]);
+        })
+        .then(([truck1Created, res]) => {
+            const trip = res.body;
+            expect(trip).toEqual(truck1Created);
+        })
+    });
 });
 
 describe('maintenance routes', () => {
@@ -336,6 +364,5 @@ describe('maintenance routes', () => {
                 expect(res.body).toContainEqual({_id: expect.any(String), __v: 0, ...maintenance3});
             });
     })
+})
 
-
-});
