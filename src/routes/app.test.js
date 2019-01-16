@@ -168,6 +168,33 @@ describe('truck routes', () => {
 
 });
 
+describe('issue routes', () => {
+    beforeEach(() => {
+        return mongoose.connection.dropCollection('issues').catch(() => {});
+    });
+
+    const issue1 = {
+        date: '1/1/17',
+        description: 'high pitched squeal',
+        dateResolved: '11/19/18'
+    }
+
+    it('can create a new issue', () => {
+        return request(app)
+            .post('/api/issues')
+            .send(issue1)
+            .then(res => {
+                expect(res.body).toEqual({
+                    ...issue1,
+                    _id: expect.any(String),
+                    __v: 0
+                });
+            });
+    })
+
+
+})
+
 describe('trip routes', () => {
     beforeEach(() => {
         return mongoose.connection.dropCollection('trips').catch(() => {});
@@ -190,20 +217,13 @@ describe('trip routes', () => {
     }
 
     it('can create a new trip', () => {
-        const trip = {
-            startDate: '1/12/19',
-            endDate: '1/14/19',
-            tripPurpose: 'routine water drop',
-            gotLocation: 'Tucson Office',
-            endLocation: 'School'
-        }
 
         return request(app)
             .post('/api/trips')
-            .send(trip)
+            .send(trip1)
             .then(res => {
                 expect(res.body).toEqual({
-                    ...trip,
+                    ...trip1,
                     _id: expect.any(String),
                     __v: 0
                 });
@@ -235,11 +255,24 @@ describe('trip routes', () => {
                 request(app).get(`/api/trips/${trip1Created._id}`)
             ]);
         })
-        .then(([truck1Created, res]) => {
+        .then(([trip1Created, res]) => {
             const trip = res.body;
-            expect(trip).toEqual(truck1Created);
+            expect(trip).toEqual(trip1Created);
         })
     });
+
+    // it('can edit a trip', () => {
+    //     return createTrip(trip1)
+    //     .then((trip1Created) => {
+    //         return Promise.all([
+    //             Promise.resolve(trip1Created),
+    //             request(app).put(`/api/trips/${trip1Created._id}`)
+    //         ]);
+    //     })
+    //     .then(([trip1Created, res]) => {
+    //         const trip = res.body;
+    //     })
+    // })
 });
 
 describe('maintenance routes', () => {
