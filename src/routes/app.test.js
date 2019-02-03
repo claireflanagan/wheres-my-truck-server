@@ -261,18 +261,28 @@ describe('trip routes', () => {
         })
     });
 
-    // it('can edit a trip', () => {
-    //     return createTrip(trip1)
-    //     .then((trip1Created) => {
-    //         return Promise.all([
-    //             Promise.resolve(trip1Created),
-    //             request(app).put(`/api/trips/${trip1Created._id}`)
-    //         ]);
-    //     })
-    //     .then(([trip1Created, res]) => {
-    //         const trip = res.body;
-    //     })
-    // })
+    it('can edit a trip', () => {
+        return createTrip(trip1)
+        .then((trip1Created) => {
+            return Promise.all([
+                Promise.resolve(trip1Created),
+                request(app).patch(`/api/trips/${trip1Created._id}`)
+                .send({ endDate: '1/16/19', endLocation: 'Other Office' })
+            ]);
+        })
+        .then(([trip1Created, res]) => {
+            const trip = res.body;
+            expect(trip).toEqual( {
+                _id: trip1Created._id,
+                __v: 0,
+                startDate: '1/12/19',
+                endDate: '1/16/19',
+                tripPurpose: 'routine water drop',
+                gotLocation: 'Tucson Office',
+                endLocation: 'Other Office'
+            })
+        })
+    })
 });
 
 describe('maintenance routes', () => {

@@ -8,25 +8,29 @@ export default Router()
       .catch(err => console.error(err));
   })
 
-  .get('/', (req, res) => {
+  .get('/', (req, res, next) => {
     Trip.find()
       .select()
       .lean()
       .then(trips => res.json(trips))
+      .catch(next);
   })
 
-  .get('/:id', (req, res) => {
+  .get('/:id', (req, res, next) => {
     const { id } = req.params;
 
     Trip.findById(id)
-      .then(trip => res.json(trip));
+      .then(trip => res.json(trip))
+      .catch(next);
   })
   
-  .put('/:id', (req, res) => {
+  .patch('/:id', (req, res, next) => {
     const { id } = req.params;
+    const { endDate, endLocation } = req.body;
     
-    Trip.findByIdAndUpdate(id, req.body)
-      .then(updatedTrip => res.json(updatedTrip));
+    Trip.findByIdAndUpdate(id, { endDate, endLocation }, {new: true})
+      .then(updatedTrip => res.json(updatedTrip))
+      .catch(next);
   });
 
 
