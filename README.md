@@ -15,6 +15,6 @@ This is a fleet managment application was designed for No More Deaths, a humanit
 
 This application is not yet deployed.
 
-## Author
+## Authors
 
-Claire Flanagan
+Claire Flanagan, Jose Cruz Guadarrama, Ryan Mehta, Sarah Rehmer
