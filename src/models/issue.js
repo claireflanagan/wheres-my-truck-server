@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import { Schema, model, Mongoose } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const issueSchema = new Schema({
   date: {
@@ -16,7 +16,7 @@ const issueSchema = new Schema({
   dateResolved: {
     type: String
   }
-})
+});
 
 
 export default model('Issue', issueSchema);

@@ -28,6 +28,7 @@ const createTrip = trip => {
     .then(res => res.body);
 };
 
+
 describe('truck routes', () => {
   beforeEach(() => {
     return mongoose.connection.dropCollection('trucks').catch(() => { });
@@ -179,6 +180,12 @@ describe('issue routes', () => {
     dateResolved: '11/19/18'
   };
 
+  // const issue2 = {
+  //   date: '1/1/19',
+  //   description: 'high pitched squeak',
+  //   dateResolved: '1/29/19'
+  // };
+
   it('can create a new issue', () => {
     return request(app)
       .post('/api/issues')
@@ -192,14 +199,31 @@ describe('issue routes', () => {
       });
   });
 
+  // it('can get all issues', () => {
+  //   return Promise.all([createIssue(issue1), createIssue(issue2)])
+  //     .then(([issue1Created, issue2Created]) => {
+  //       Promise.resolve(issue1Created),
+  //       Promise.resolve(issue2Created),
+
+  //     })
+    
+  //   return request(app)
+  //     .get('/api/issues')
+  //     .then(res => {
+  //       expect(res.body).toEqual({
+
+  //       });
+  //     });
+  // });
+
 
 });
 
 describe('trip routes', () => {
   beforeEach(() => {
-    return mongoose.connection.dropCollection('trips').catch(() => { });
+    return mongoose.connection.dropCollection('trips').catch(() => {});
   });
-
+    
   const trip1 = {
     startDate: '1/12/19',
     endDate: '1/14/19',
@@ -261,18 +285,28 @@ describe('trip routes', () => {
       });
   });
 
-  // it('can edit a trip', () => {
-  //     return createTrip(trip1)
-  //     .then((trip1Created) => {
-  //         return Promise.all([
-  //             Promise.resolve(trip1Created),
-  //             request(app).put(`/api/trips/${trip1Created._id}`)
-  //         ]);
-  //     })
-  //     .then(([trip1Created, res]) => {
-  //         const trip = res.body;
-  //     })
-  // })
+  it('can edit a trip', () => {
+    return createTrip(trip1)
+      .then((trip1Created) => {
+        return Promise.all([
+          Promise.resolve(trip1Created),
+          request(app).patch(`/api/trips/${trip1Created._id}`)
+            .send({ endDate: '1/16/19', endLocation: 'Other Office' })
+        ]);
+      })
+      .then(([trip1Created, res]) => {
+        const trip = res.body;
+        expect(trip).toEqual({
+          _id: trip1Created._id,
+          __v: 0,
+          startDate: '1/12/19',
+          endDate: '1/16/19',
+          tripPurpose: 'routine water drop',
+          gotLocation: 'Tucson Office',
+          endLocation: 'Other Office'
+        });
+      });
+  });
 });
 
 describe('maintenance routes', () => {
@@ -382,6 +416,7 @@ describe('maintenance routes', () => {
     return Promise.all([createMaintenance(maintenance2), createMaintenance(maintenance3)])
       .then(created => {
         createdMaintenances = created;
+        return createdMaintenances; 
       });
   });
 
@@ -423,3 +458,4 @@ describe('maintenance routes', () => {
       });
   });
 });
+
