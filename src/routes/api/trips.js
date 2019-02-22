@@ -28,7 +28,7 @@ export default Router()
     const { id } = req.params;
     const { endDate, endLocation } = req.body;
     
-    Trip.findByIdAndUpdate(id, { endDate, endLocation }, {new: true})
+    Trip.findByIdAndUpdate(id, { endDate, endLocation }, { new: true })
       .then(updatedTrip => res.json(updatedTrip))
       .catch(next);
   });

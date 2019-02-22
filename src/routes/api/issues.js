@@ -7,3 +7,28 @@ export default Router()
       .then(issue => res.json(issue))
       .catch(err => console.error(err));
   })
+
+  .get('/', (req, res, next) => {
+    Issue.find()
+      .lean()
+      .then(issues => res.json(issues))
+      .catch(next);
+  })
+
+  .get('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    Issue.findById(id)
+      .then(issue => res.json(issue))
+      .catch(next);
+  })
+
+  .patch('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const { dateResolved } = req.body;
+
+    Issue.findByIdAndUpdate(id, { dateResolved }, { new: true })
+      .then(updatedIssue => res.json(updatedIssue))
+      .catch(next);
+  });
+
