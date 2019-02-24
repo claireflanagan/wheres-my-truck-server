@@ -130,6 +130,7 @@ describe('maintenance routes', () => {
     return Promise.all([createMaintenance(maintenance2), createMaintenance(maintenance3)])
       .then(created => {
         createdMaintenances = created;
+        console.log(createdMaintenances);
         return createdMaintenances; 
       });
   });
@@ -163,11 +164,20 @@ describe('maintenance routes', () => {
   it('can get all maintenances for a truck', () => {
 
     return request(app)
-      .get(`/api/maintenances/${createdTrucks[0]._id}`)
+      .get(`/api/maintenances/truck/${createdTrucks[0]._id}`)
       .then((res) => {
         expect(res.body).toHaveLength(2);
         expect(res.body).toContainEqual({ _id: expect.any(String), __v: 0, ...maintenance2 });
         expect(res.body).toContainEqual({ _id: expect.any(String), __v: 0, ...maintenance3 });
+      });
+  });
+
+  it('can get a maintenance by id', () => {
+    return request(app)
+      .get(`/api/maintenances/${createdMaintenances[0]._id}`)
+      .then((res) => {
+        const maintenance = res.body;
+        expect(maintenance).toEqual(createdMaintenances[0]);
       });
   });
 });
