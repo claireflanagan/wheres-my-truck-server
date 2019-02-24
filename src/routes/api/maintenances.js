@@ -8,8 +8,9 @@ export default Router()
       .catch(err => console.log(err));
   })
 
-  .get('/:id', (req, res) => { // is this wrong?  why id if getting all?
+  .get('/:id', (req, res, next) => { // is this wrong?  why id if getting all?
     Maintenance.find()
       .lean()
-      .then(maintenances => res.json(maintenances)); 
+      .then(maintenances => res.json(maintenances))
+      .catch(next); 
   });

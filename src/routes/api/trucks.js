@@ -2,22 +2,24 @@ import { Router } from 'express';
 import Truck from '../../models/truck';
 
 export default Router()
-  .post('/', (req, res) => {
+  .post('/', (req, res, next) => {
     Truck.create(req.body)
       .then(truck => res.json(truck))
-      .catch(err => console.error(err)); 
+      .catch(next); 
   })
 
-  .get('/', (req, res) => {
+  .get('/', (req, res, next) => {
     Truck.find()
       .select()
       .lean()
-      .then(trucks => res.json(trucks));
+      .then(trucks => res.json(trucks))
+      .catch(next);
   })
 
-  .get('/:id', (req, res) => {
+  .get('/:id', (req, res, next) => {
     const { id } = req.params;
 
     Truck.findById(id)
-      .then(truck => res.json(truck));
+      .then(truck => res.json(truck))
+      .catch(next);
   });

@@ -15,7 +15,11 @@ const redactURLAuth = url => {
 };
 
 module.exports = (dbUrl = process.env.MONGODB_URI) => {
-  mongoose.connect(dbUrl, { useNewUrlParser: true });
+  mongoose.connect(dbUrl, { 
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  });
   const redactedUrl = redactURLAuth(dbUrl);
   mongoose.connection.on('error', log('error', redactedUrl));
   mongoose.connection.on('open', log('open', redactedUrl));
