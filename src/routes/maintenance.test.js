@@ -95,7 +95,6 @@ describe('maintenance routes', () => {
   const maintenance2 = {
     dateReported: '01/01/1999',
     user: 'User2',
-    issueDescription: 'Brakes not working',
     levelOfUrgency: 'Not Urgent',
     type: 'Corrective',
     dateResolved: '01/01/2010',
@@ -108,7 +107,6 @@ describe('maintenance routes', () => {
   const maintenance3 = {
     dateReported: '01/01/1999',
     user: 'User1',
-    issueDescription: 'Windshield not working',
     levelOfUrgency: 'Not Urgent',
     type: 'Corrective',
     dateResolved: '01/01/2010',
@@ -141,7 +139,6 @@ describe('maintenance routes', () => {
       dateReported: '01/01/1999',
       user: 'User1',
       truckId: createdTrucks[0]._id,
-      issueDescription: 'Power steering not working',
       levelOfUrgency: 'Not Urgent',
       type: 'Corrective',
       dateResolved: '01/01/2010',

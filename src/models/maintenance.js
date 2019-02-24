@@ -13,10 +13,6 @@ const maintenanceSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId, ref: 'Truck',
     required: true
   },
-  issueDescription: { //redundant?
-    type: String,
-    required: true
-  },
   levelOfUrgency: {
     type: String,
     enum: ['Very Urgent', 'Moderately Urgent', 'Not Urgent', 'Unknown'],
