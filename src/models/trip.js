@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import { Schema, model, Mongoose } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const tripSchema = new Schema({
   userId: {
@@ -21,6 +21,6 @@ const tripSchema = new Schema({
   endLocation: {
     type: String
   }
-})
+});
 
 export default model('Trip', tripSchema);
