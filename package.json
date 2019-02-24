@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "npm run test -- --watch",
     "build": "babel src -d lib -s true",
     "heroku-postbuild": "npm run build && rm -rf client/node_modules",

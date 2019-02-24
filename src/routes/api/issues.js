@@ -2,10 +2,10 @@ import Issue from '../../models/issue';
 import { Router } from 'express';
 
 export default Router()
-  .post('/', (req, res) => {
+  .post('/', (req, res, next) => {
     Issue.create(req.body)
       .then(issue => res.json(issue))
-      .catch(err => console.error(err));
+      .catch(next);
   })
 
   .get('/', (req, res, next) => {
