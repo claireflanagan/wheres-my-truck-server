@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import Truck from '../../models/truck';
+import isAdmin from '../../middleware/isAdmin';
 
 export default Router()
-  .post('/', (req, res, next) => {
+  .post('/', isAdmin, (req, res, next) => {
     Truck.create(req.body)
       .then(truck => res.json(truck))
-      .catch(next); 
+      .catch(next);
   })
 
   .get('/', (req, res, next) => {

@@ -86,7 +86,7 @@
     ],
     "array-bracket-spacing": "error",
     "babel/no-invalid-this": 1,
-    "babel/semi": 1,
+    "babel/semi": 0,
     "react/prop-types": "off"
   }
 }
