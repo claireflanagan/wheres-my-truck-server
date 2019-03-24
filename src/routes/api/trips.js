@@ -23,6 +23,13 @@ export default Router()
       .then(trip => res.json(trip))
       .catch(next);
   })
+
+  .get('/trip/:truckId', (req, res, next) => {
+    Trip.find()
+      .lean()
+      .then(trips => res.json(trips))
+      .catch(next);
+  })
   
   .patch('/:id', (req, res, next) => {
     const { id } = req.params;
