@@ -158,4 +158,59 @@ describe('truck routes', () => {
       });
   });
 
+  it('can update a truck by id', () => {
+    return createTruck(truck3)
+      .then((truck3Created) => {
+        return Promise.all([
+          Promise.resolve(truck3Created),
+          request(app)
+            .put(`/api/trucks/${truck3Created._id}`)
+            .send({
+              keys: [{
+                keyCodeUpdated: true,
+                numberOfKeysInLockbox: 44
+              }],
+              status: [{
+                statusLevel: 'Out of Service',
+                statusNotes: 'Oil changed needed soon'
+              }]
+            })
+        ]);
+      })
+      .then(([truck3Created, res]) => {
+        const updatedTruck = res.body;
+        expect(updatedTruck).toEqual({
+          __v: 0,
+          _id: truck3Created._id,
+          name: 'TruckThree',
+          location: 'the office',
+          vin: '1HGBH41JXMN109086',
+          plates: 'AZ - 29991J',
+          year: 1994,
+          make: 'Toyota',
+          model: '4Runner',
+          tireSize: 25,
+          boughtDate: '03/03/2010',
+          registration: 'https://www.dmv.ca.gov/imageserver/dmv/images/vr/regcard_w_arrow2.jpg',
+          insurance: 'https://approvedauto.files.wordpress.com/2013/12/id-card-example.jpg',
+          inUse: false,
+          tires: [{
+            currentTires: 'Goodyear',
+            spares: 'two spares',
+            boltPattern: 'Metric',
+            victorsSpares: 'yes'
+          }],
+          keys: [{
+            keyCodeUpdated: true,
+            numberOfKeysInLockbox: 44
+          }],
+          status: [{
+            statusLevel: 'Out of Service',
+            statusNotes: 'Oil changed needed soon'
+          }],
+          thingsToKnow: 'Must wiggle key seven times before starting the car'
+        });
+      });
+  });
+
 });
