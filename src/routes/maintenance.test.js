@@ -130,7 +130,6 @@ describe('maintenance routes', () => {
     return Promise.all([createMaintenance(maintenance2), createMaintenance(maintenance3)])
       .then(created => {
         createdMaintenances = created;
-        console.log(createdMaintenances);
         return createdMaintenances; 
       });
   });
@@ -162,7 +161,6 @@ describe('maintenance routes', () => {
   });
 
   it('can get all maintenances for a truck', () => {
-
     return request(app)
       .get(`/api/maintenances/truck/${createdTrucks[0]._id}`)
       .then((res) => {
@@ -178,6 +176,43 @@ describe('maintenance routes', () => {
       .then((res) => {
         const maintenance = res.body;
         expect(maintenance).toEqual(createdMaintenances[0]);
+      });
+  });
+
+  it('can update a maintenance by id', () => {
+    return request(app)
+      .put(`/api/maintenances/${createdMaintenances[0]._id}`)
+      .send({
+        _id: createdMaintenances[0]._id,
+        __v: 0,
+        dateReported: '01/01/1999',
+        user: 'User2',
+        levelOfUrgency: 'Urgent',
+        type: 'Corrective',
+        dateResolved: '01/01/2010',
+        descriptionOfMaintenancePerformed: [{
+          description: 'Brakes fixed',
+          cost: 231.40
+        }],
+        issueOpen: false
+      })
+      .then((res) => {
+        const newMaintenance = res.body;
+        expect(newMaintenance).toEqual({
+          _id: createdMaintenances[0]._id,
+          __v: 0,
+          dateReported: '01/01/1999',
+          user: 'User2',
+          levelOfUrgency: 'Urgent',
+          truckId: createdTrucks[0]._id,
+          type: 'Corrective',
+          dateResolved: '01/01/2010',
+          descriptionOfMaintenancePerformed: [{
+            description: 'Brakes fixed',
+            cost: 231.40
+          }],
+          issueOpen: false
+        });
       });
   });
 });
