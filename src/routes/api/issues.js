@@ -33,6 +33,13 @@ export default Router()
       .catch(next);
   })
 
+  .get('/issue/:truckId', (req, res, next) => {
+    Issue.find()
+      .lean()
+      .then(issues => res.json(issues))
+      .catch(next);
+  })
+
   .patch('/:id', (req, res, next) => {
     const { id } = req.params;
     const { resolvedDate } = req.body;
