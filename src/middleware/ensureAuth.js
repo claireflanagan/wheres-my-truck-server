@@ -5,9 +5,6 @@ import jwksRsa from 'jwks-rsa';
 config();
 
 export default () => {
-  if(process.env.NODE_ENV === 'test') {
-    return (req, res, next) => next();
-  }
   return jwt({
     secret: jwksRsa.expressJwtSecret({
       cache: true,
