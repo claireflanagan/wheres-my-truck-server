@@ -1,4 +1,4 @@
-import { getTruck, getIssue, getMaintenances } from '../../utils/testHelpers';
+import { getTruck, getIssue, getMaintenances, getMaintenance } from '../../utils/testHelpers';
 import request from 'supertest';
 import app from '../app';
 
@@ -36,10 +36,28 @@ describe('maintenance routes', () => {
     const truck = await getTruck();
     const maintenances = await getMaintenances({ truck: truck._id });
     return request(app)
-      .get(`/api/maintenances/${truck._id}`)
+      .get(`/api/maintenances/truck/${truck._id}`)
       .then(res => {
         expect(res.body).toHaveLength(maintenances.length);
         maintenances.forEach(maint => expect(res.body).toContainEqual(maint));
+      });
+  });
+
+  it('can get a maintenance by id', async() => {
+    const maintenance = await getMaintenance();
+    return request(app)
+      .get(`/api/maintenances/${maintenance._id}`)
+      .then(res => {
+        expect(res.body).toEqual(maintenance);
+      });
+  });
+
+  it('can update a maintenance by id', async() => {
+    const maintenance = await getMaintenance();
+    return request(app)
+      .get(`/api/maintenances/${maintenance._id}`)
+      .then(res => {
+        expect(res.body).toEqual(maintenance);
       });
   });
 });

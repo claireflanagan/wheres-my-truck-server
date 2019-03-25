@@ -49,4 +49,13 @@ export default Router()
     Truck.findById(id)
       .then(truck => res.json(truck))
       .catch(next);
+  })
+  
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const updatedTruck = req.body;
+
+    Truck.findByIdAndUpdate(id, updatedTruck, { new: true })
+      .then(newTruck => res.json(newTruck))
+      .catch(next);
   });

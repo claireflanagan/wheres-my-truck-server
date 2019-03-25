@@ -28,7 +28,15 @@ export default Router()
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
 
-    Maintenance.find({ truck: id })
+    Maintenance.findById(id)
+      .then(maintenance => res.json(maintenance))
+      .catch(next);
+  })
+
+  .get('/truck/:truckId', (req, res, next) => {
+    const { truckId } = req.params;
+
+    Maintenance.find({ truck: truckId })
       .lean()
       .then(maintenances => res.json(maintenances))
       .catch(next);
