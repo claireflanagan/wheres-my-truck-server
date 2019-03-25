@@ -1,4 +1,5 @@
 import express from 'express';
+import adminRoutes from './api/admin';
 import trucksRoutes from './api/trucks';
 import maintenancesRoutes from './api/maintenances';
 import tripsRoutes from './api/trips';
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors);
 
 app.use(ensureAuth());
+app.use('/api/admin', adminRoutes);
 app.use('/api/trucks', trucksRoutes);
 app.use('/api/maintenances', maintenancesRoutes);
 app.use('/api/trips', tripsRoutes);

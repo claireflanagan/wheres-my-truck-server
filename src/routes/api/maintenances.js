@@ -1,20 +1,30 @@
 import { Router } from 'express';
-import Maintenance from '../../models/maintenance';
+import Maintenance from '../../models/Maintenance';
 
 export default Router()
   .post('/', (req, res, next) => {
-    Maintenance.create(req.body)
+    const {
+      startDate,
+      truck,
+      levelOfUrgency,
+      type,
+      issueOpen,
+      issue
+    } = req.body;
+
+    Maintenance.create({
+      user: req.user.sub,
+      startDate,
+      truck,
+      levelOfUrgency,
+      type,
+      issueOpen,
+      issue
+    })
       .then(maintenance => res.json(maintenance))
       .catch(next);
   })
 
-  .get('/truck/:truckId', (req, res, next) => {
-    Maintenance.find()
-      .lean()
-      .then(maintenances => res.json(maintenances))
-      .catch(next); 
-  })
-  
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
 
@@ -22,12 +32,12 @@ export default Router()
       .then(maintenance => res.json(maintenance))
       .catch(next);
   })
-  
-  .put('/:id', (req, res, next) => {
-    const { id } = req.params;
-    const updatedMaintenance = req.body;
 
-    Maintenance.findByIdAndUpdate(id, updatedMaintenance, { new: true })
-      .then(newMaintenance => res.json(newMaintenance))
+  .get('/truck/:truckId', (req, res, next) => {
+    const { truckId } = req.params;
+
+    Maintenance.find({ truck: truckId })
+      .lean()
+      .then(maintenances => res.json(maintenances))
       .catch(next);
   });

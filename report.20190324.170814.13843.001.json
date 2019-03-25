@@ -1,0 +1,490 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "location": "OnFatalError",
+    "filename": "report.20190324.170814.13843.001.json",
+    "dumpEventTime": "2019-03-24T17:08:14Z",
+    "dumpEventTimeStamp": "1553472494274",
+    "processId": 13843,
+    "commandLine": [
+      "node",
+      "/home/ryan/code/personal/wheres-my-truck-server/node_modules/.bin/jest",
+      "--runInBand",
+      "--watch"
+    ],
+    "nodejsVersion": "v11.10.0",
+    "glibcVersionRuntime": "2.28",
+    "glibcVersionCompiler": "2.12",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "11.10.0",
+      "v8": "7.0.276.38-node.17",
+      "uv": "1.26.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "67",
+      "nghttp2": "1.34.0",
+      "napi": "4",
+      "llhttp": "1.1.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1a",
+      "cldr": "34.0",
+      "icu": "63.1",
+      "tz": "2018e",
+      "unicode": "11.0"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v11.10.0/node-v11.10.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v11.10.0/node-v11.10.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "5.0.3-arch1-1-ARCH",
+    "osVersion": "#1 SMP PREEMPT Tue Mar 19 13:09:13 UTC 2019",
+    "osMachine": "x86_64",
+    "host": "fichte"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000a683e8",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string, v8::Local<v8::String>) [node]"
+    },
+    {
+      "pc": "0x00000000009548de",
+      "symbol": "node::OnFatalError(char const*, char const*) [node]"
+    },
+    {
+      "pc": "0x0000000000b32bee",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000b32e24",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000f32452",
+      "symbol": " [node]"
+    },
+    {
+      "pc": "0x0000000000f32558",
+      "symbol": "v8::internal::Heap::CheckIneffectiveMarkCompact(unsigned long, double) [node]"
+    },
+    {
+      "pc": "0x0000000000f3ec78",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000f3f78b",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000f424c1",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [node]"
+    },
+    {
+      "pc": "0x0000000000f0c6f4",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [node]"
+    },
+    {
+      "pc": "0x00000000011c2b3e",
+      "symbol": "v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [node]"
+    },
+    {
+      "pc": "0x00003210f2ccfc5d",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 1526472704,
+    "totalCommittedMemory": 1524423064,
+    "usedMemory": 1401343624,
+    "availableMemory": 60695840,
+    "memoryLimit": 1526909922,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 42224,
+        "capacity": 515584,
+        "used": 33520,
+        "available": 482064
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 33553952,
+        "capacity": 16498688,
+        "used": 553216,
+        "available": 15945472
+      },
+      "old_space": {
+        "memorySize": 1345523712,
+        "committedMemory": 1345280952,
+        "capacity": 1313725184,
+        "used": 1269702128,
+        "available": 44023056
+      },
+      "code_space": {
+        "memorySize": 58195968,
+        "committedMemory": 57211040,
+        "capacity": 52717376,
+        "used": 52717376,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 79179776,
+        "committedMemory": 78840368,
+        "capacity": 70261840,
+        "used": 70261840,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 9494528,
+        "committedMemory": 9494528,
+        "capacity": 8320792,
+        "used": 8075544,
+        "available": 245248
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 842.282,
+    "kernelCpuSeconds": 842.282,
+    "cpuConsumptionPercent": 0.000108439,
+    "maxRss": 1646874624,
+    "pageFaults": {
+      "IORequired": 0,
+      "IONotRequired": 1633034
+    },
+    "fsActivity": {
+      "reads": 24,
+      "writes": 0
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 588.503,
+    "kernelCpuSeconds": 588.503,
+    "cpuConsumptionPercent": 7.57662e-05,
+    "fsActivity": {
+      "reads": 24,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "/usr/local/bin:/usr/local/sbin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl": "",
+    "npm_package_jest_testEnvironment": "node",
+    "SHELL": "/usr/bin/zsh",
+    "npm_config_timing": "",
+    "npm_config_access": "",
+    "LSCOLORS": "exfxcxdxbxegedabagacad",
+    "npm_config_save_dev": "",
+    "SESSION_MANAGER": "local/fichte:@/tmp/.ICE-unix/1047,unix/fichte:/tmp/.ICE-unix/1047",
+    "npm_config_sign_git_tag": "",
+    "npm_config_userconfig": "/home/ryan/.npmrc",
+    "npm_config_global": "",
+    "npm_config_unsafe_perm": "true",
+    "COLORTERM": "truecolor",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_cache": "/home/ryan/.npm",
+    "npm_config_loglevel": "notice",
+    "npm_package_devDependencies_chance": "^1.0.18",
+    "npm_config_init_author_name": "",
+    "LESS": "-R",
+    "npm_package_main": "index.js",
+    "npm_config_send_metrics": "",
+    "GREP_COLOR": "1;33",
+    "XDG_MENU_PREFIX": "gnome-",
+    "npm_package_repository_url": "git+https://github.com/claireflanagan/wheres-my-truck-server.git",
+    "TERM_PROGRAM_VERSION": "1.32.1",
+    "npm_config_optional": "true",
+    "npm_config_user": "1000",
+    "npm_config_git_tag_version": "true",
+    "npm_package_devDependencies__babel_preset_env": "^7.4.2",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "npm_config_rebuild_bundle": "true",
+    "npm_package_dependencies_express_jwt": "^5.3.1",
+    "npm_config_always_auth": "",
+    "npm_config_cache_max": "Infinity",
+    "NODE": "/home/ryan/.n/bin/node",
+    "npm_config_searchstaleness": "900",
+    "npm_config_ignore_scripts": "",
+    "npm_config_save_optional": "",
+    "npm_package_dependencies_jwks_rsa": "^1.4.0",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "npm_config_dev": "",
+    "GRADLE_HOME": "/home/ryan/.sdkman/candidates/gradle/current",
+    "npm_config_browser": "",
+    "npm_config_maxsockets": "50",
+    "npm_config_argv": "{\"remain\":[\"--watch\"],\"cooked\":[\"run\",\"test\",\"--\",\"--watch\"],\"original\":[\"run\",\"test\",\"--\",\"--watch\"]}",
+    "SDKMAN_CANDIDATES_DIR": "/home/ryan/.sdkman/candidates",
+    "npm_config_ham_it_up": "",
+    "XMODIFIERS": "@im=ibus",
+    "npm_config_bin_links": "true",
+    "DESKTOP_SESSION": "gnome-xorg",
+    "NO_AT_BRIDGE": "1",
+    "npm_config_allow_same_version": "",
+    "npm_config_globalconfig": "/home/ryan/.npm-global/etc/npmrc",
+    "npm_config_cache_min": "10",
+    "npm_package_scripts_test_watch": "npm run test -- --watch",
+    "npm_package_dependencies_auth0": "^2.16.0",
+    "npm_package_devDependencies_nodemon": "^1.18.10",
+    "EDITOR": "vim",
+    "npm_config_tag_version_prefix": "v",
+    "npm_config_shell": "/usr/bin/zsh",
+    "npm_config_preid": "",
+    "npm_config_usage": "",
+    "XDG_SEAT": "seat0",
+    "PWD": "/home/ryan/code/personal/wheres-my-truck-server",
+    "npm_config_only": "",
+    "npm_config_save_prefix": "^",
+    "LOGNAME": "ryan",
+    "XDG_SESSION_DESKTOP": "gnome-xorg",
+    "XDG_SESSION_TYPE": "x11",
+    "npm_config_sign_git_commit": "",
+    "npm_package_readmeFilename": "README.md",
+    "npm_config_commit_hooks": "true",
+    "npm_config_init_module": "/home/ryan/.npm-init.js",
+    "npm_config_otp": "",
+    "npm_config_editor": "vim",
+    "npm_package_devDependencies__babel_core": "^7.4.0",
+    "npm_config_tmp": "/tmp",
+    "npm_package_scripts_build": "babel src -d lib -s true",
+    "npm_config_audit_level": "low",
+    "npm_package_author": "",
+    "_": "/home/ryan/code/personal/wheres-my-truck-server/node_modules/.bin/jest",
+    "npm_config_color": "true",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "npm_config_package_lock_only": "",
+    "npm_package_dependencies_mongoose": "^5.4.19",
+    "npm_config_save_prod": "",
+    "npm_package_bugs_url": "https://github.com/claireflanagan/wheres-my-truck-server/issues",
+    "WINDOWPATH": "2",
+    "GDM_LANG": "en_AU.UTF-8",
+    "npm_config_also": "",
+    "npm_config_cidr": "",
+    "HOME": "/home/ryan",
+    "npm_config_node_version": "11.10.0",
+    "USERNAME": "ryan",
+    "LANG": "en_US.UTF-8",
+    "npm_config_init_author_url": "",
+    "LS_COLORS": "di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:",
+    "XDG_CURRENT_DESKTOP": "GNOME",
+    "npm_config_globalignorefile": "/home/ryan/.npm-global/etc/npmignore",
+    "npm_config_init_license": "ISC",
+    "npm_package_version": "1.0.0",
+    "npm_config_cache_lock_stale": "60000",
+    "npm_package_scripts_seed": "babel-node seed.js",
+    "VTE_VERSION": "5600",
+    "N_PREFIX": "/home/ryan/.n",
+    "npm_config_versions": "",
+    "npm_config_proxy": "",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_fetch_retries": "2",
+    "npm_config_git": "git",
+    "npm_config_read_only": "",
+    "npm_config_group": "1000",
+    "npm_package_devDependencies__babel_cli": "^7.2.3",
+    "SDKMAN_VERSION": "5.6.1+290",
+    "npm_package_repository_type": "git",
+    "npm_package_dependencies_express": "^4.16.4",
+    "npm_config_unicode": "true",
+    "npm_config_sso_type": "oauth",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_local_address": "",
+    "npm_config_description": "true",
+    "sdkman_disable_gvm_alias": "false",
+    "INIT_CWD": "/home/ryan/code/personal/wheres-my-truck-server",
+    "npm_config_dry_run": "",
+    "CHROME_DESKTOP": "code-url-handler.desktop",
+    "npm_config_viewer": "man",
+    "npm_config_offline": "",
+    "npm_config_message": "%s",
+    "npm_package_scripts_heroku_postbuild": "npm run build && rm -rf client/node_modules",
+    "npm_config_production": "",
+    "npm_config_prefer_online": "",
+    "npm_config_link": "",
+    "npm_lifecycle_script": "jest --runInBand \"--watch\"",
+    "npm_package_description": "## Overview",
+    "npm_config_shrinkwrap": "true",
+    "npm_package_devDependencies__babel_plugin_proposal_class_properties": "^7.4.0",
+    "npm_package_devDependencies__babel_node": "^7.2.2",
+    "npm_config_force": "",
+    "npm_package_devDependencies__babel_runtime": "^7.4.2",
+    "npm_config_rollback": "true",
+    "XDG_SESSION_CLASS": "user",
+    "npm_config_save_bundle": "",
+    "npm_config_onload_script": "",
+    "TERM": "xterm-256color",
+    "npm_package_name": "wheres-my-truck-server",
+    "ZSH": "/home/ryan/.oh-my-zsh",
+    "SCALA_HOME": "/home/ryan/.sdkman/candidates/scala/current",
+    "npm_config_prefix": "/home/ryan/.npm-global",
+    "npm_config_cert": "",
+    "USER": "ryan",
+    "SDKMAN_CURRENT_API": "https://api.sdkman.io/2",
+    "npm_config_heading": "npm",
+    "npm_package_homepage": "https://github.com/claireflanagan/wheres-my-truck-server#readme",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_node_options": "",
+    "npm_config_key": "",
+    "SDKMAN_DIR": "/home/ryan/.sdkman",
+    "npm_config_json": "",
+    "npm_config_depth": "Infinity",
+    "npm_package_dependencies_dotenv": "^6.2.0",
+    "DISPLAY": ":0.0",
+    "npm_lifecycle_event": "test",
+    "SHLVL": "3",
+    "npm_package_devDependencies_eslint": "^5.15.3",
+    "PAGER": "less",
+    "npm_package_devDependencies__babel_plugin_transform_runtime": "^7.4.0",
+    "npm_config_ca": "",
+    "npm_config_prefer_offline": "",
+    "QT_IM_MODULE": "ibus",
+    "npm_package_scripts_start_watch": "nodemon src/index.js --exec babel-node",
+    "XDG_VTNR": "2",
+    "DESKTOP_AUTOSTART_ID": "107bce56302de973e4155326088856143200000010470018",
+    "npm_config_if_present": "",
+    "XDG_SESSION_ID": "2",
+    "npm_config_user_agent": "npm/6.7.0 node/v11.10.0 linux x64",
+    "npm_package_dependencies_express_session": "^1.15.6",
+    "npm_config_save_exact": "",
+    "SDKMAN_LEGACY_API": "https://api.sdkman.io/1",
+    "npm_execpath": "/home/ryan/.n/lib/node_modules/npm/bin/npm-cli.js",
+    "npm_config_progress": "true",
+    "npm_package_devDependencies_babel_eslint": "^10.0.1",
+    "npm_config_global_style": "",
+    "MOZ_PLUGIN_PATH": "/usr/lib/mozilla/plugins",
+    "npm_package_devDependencies_supertest": "^3.4.2",
+    "npm_package_scripts_test": "jest --runInBand \"--watch\"",
+    "npm_config_init_author_email": "",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "npm_config_script_shell": "",
+    "npm_config_long": "",
+    "npm_config_save": "true",
+    "npm_config_strict_ssl": "true",
+    "npm_config_auth_type": "legacy",
+    "npm_config_version": "",
+    "npm_config_logs_max": "10",
+    "npm_config_umask": "0022",
+    "npm_config_sso_poll_frequency": "500",
+    "npm_config_searchopts": "",
+    "npm_config_legacy_bundling": "",
+    "LC_ALL": "en_US.UTF-8",
+    "MAVEN_OPTS": "-Xmx512m",
+    "npm_config_searchlimit": "20",
+    "npm_package_scripts_start": "node lib/index.js",
+    "npm_config_noproxy": "",
+    "PATH": "/home/ryan/.n/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/ryan/code/personal/wheres-my-truck-server/node_modules/.bin:/home/ryan/.n/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/ryan/code/personal/wheres-my-truck-server/node_modules/.bin:/home/ryan/google-cloud-sdk/bin:/home/ryan/.n/bin:/home/ryan/.npm-global/bin:/home/ryan/.npm-global/bin:/home/ryan/google-cloud-sdk/bin:/home/ryan/.n/bin:/home/ryan/.npm-global/bin:/home/ryan/.sdkman/candidates/scala/current/bin:/home/ryan/.sdkman/candidates/gradle/current/bin:/home/ryan/.npm-global/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/ryan/.gem/ruby/2.2.0/bin:/home/ryan/bin:/home/ryan/.rvm/bin/:/home/ryan/go/bin:/usr/local/node/bin:/home/ryan/.rvm/bin:/home/ryan/.gem/ruby/2.4.0/bin:/home/ryan/.gem/ruby/2.2.0/bin:/home/ryan/bin:/home/ryan/.rvm/bin/:/home/ryan/go/bin:/usr/local/node/bin:/home/ryan/.rvm/bin:/home/ryan/.gem/ruby/2.4.0/bin",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "npm_config_node_gyp": "/home/ryan/.n/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+    "npm_config_searchexclude": "",
+    "GDMSESSION": "gnome-xorg",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "npm_package_license": "ISC",
+    "SDKMAN_PLATFORM": "Linux64",
+    "npm_package_gitHead": "0eb3cd136b127869b1790d9c78cf640969b9c1f0",
+    "npm_config_update_notifier": "true",
+    "MAIL": "/var/spool/mail/ryan",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_audit": "true",
+    "npm_config_tag": "latest",
+    "npm_config_scripts_prepend_node_path": "warn-only",
+    "npm_package_devDependencies_eslint_plugin_babel": "^5.3.0",
+    "npm_config_cafile": "",
+    "npm_config_fetch_retry_factor": "10",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "1317",
+    "npm_node_execpath": "/home/ryan/.n/bin/node",
+    "npm_package_devDependencies__babel_plugin_proposal_decorators": "^7.4.0",
+    "npm_config_engine_strict": "",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/home/ryan/.config/autostart/tilda.desktop",
+    "npm_config_https_proxy": "",
+    "npm_package_dependencies_express_jwt_authz": "^1.0.0",
+    "OLDPWD": "/home/ryan/code/personal/wheres-my-truck-server",
+    "GOPATH": "/home/ryan/go",
+    "npm_package_devDependencies_jest": "^24.5.0",
+    "npm_config_scope": "",
+    "npm_config_package_lock": "true",
+    "TERM_PROGRAM": "vscode",
+    "npm_config_parseable": "",
+    "npm_config_init_version": "1.0.0",
+    "NODE_ENV": "test",
+    "JEST_WORKER_ID": "1"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 65536,
+      "hard": 65536
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 500000,
+      "hard": 500000
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 127890,
+      "hard": 127890
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/usr/lib/libdl.so.2",
+    "/usr/lib/librt.so.1",
+    "/usr/lib/libstdc++.so.6",
+    "/usr/lib/libm.so.6",
+    "/usr/lib/libgcc_s.so.1",
+    "/usr/lib/libpthread.so.0",
+    "/usr/lib/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2",
+    "/usr/lib/libnss_files.so.2",
+    "/usr/lib/libnss_mymachines.so.2",
+    "/usr/lib/libnss_myhostname.so.2",
+    "/usr/lib/libnss_resolve.so.2",
+    "/usr/lib/libnss_dns.so.2",
+    "/usr/lib/libresolv.so.2"
+  ]
+}

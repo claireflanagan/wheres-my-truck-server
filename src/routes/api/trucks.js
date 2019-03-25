@@ -1,11 +1,38 @@
 import { Router } from 'express';
-import Truck from '../../models/truck';
+import Truck from '../../models/Truck';
+import isAdmin from '../../middleware/isAdmin';
 
 export default Router()
-  .post('/', (req, res, next) => {
-    Truck.create(req.body)
+  .post('/', isAdmin, (req, res, next) => {
+    const {
+      name,
+      location,
+      vin,
+      plates,
+      year,
+      make,
+      model,
+      tireSize,
+      boughtDate,
+      registration,
+      insurance
+    } = req.body;
+
+    Truck.create({
+      name,
+      location,
+      vin,
+      plates,
+      year,
+      make,
+      model,
+      tireSize,
+      boughtDate,
+      registration,
+      insurance
+    })
       .then(truck => res.json(truck))
-      .catch(next); 
+      .catch(next);
   })
 
   .get('/', (req, res, next) => {

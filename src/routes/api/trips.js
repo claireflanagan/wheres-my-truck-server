@@ -1,9 +1,21 @@
 import { Router } from 'express';
-import Trip from '../../models/trip';
+import Trip from '../../models/Trip';
 
 export default Router()
   .post('/', (req, res, next) => {
-    Trip.create(req.body)
+    const {
+      truck,
+      startDate,
+      tripPurpose,
+      startLocation
+    } = req.body;
+    Trip.create({
+      user: req.user.sub,
+      truck,
+      startDate,
+      tripPurpose,
+      startLocation
+    })
       .then(trip => res.json(trip))
       .catch(next);
   })
@@ -34,10 +46,8 @@ export default Router()
   .patch('/:id', (req, res, next) => {
     const { id } = req.params;
     const { endDate, endLocation } = req.body;
-    
+
     Trip.findByIdAndUpdate(id, { endDate, endLocation }, { new: true })
       .then(updatedTrip => res.json(updatedTrip))
       .catch(next);
   });
-
-

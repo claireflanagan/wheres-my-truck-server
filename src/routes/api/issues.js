@@ -1,9 +1,19 @@
-import Issue from '../../models/issue';
+import Issue from '../../models/Issue';
 import { Router } from 'express';
 
 export default Router()
   .post('/', (req, res, next) => {
-    Issue.create(req.body)
+    const {
+      reportedDate,
+      description,
+      truck
+    } = req.body;
+    Issue.create({
+      user: req.user.sub,
+      reportedDate,
+      description,
+      truck
+    })
       .then(issue => res.json(issue))
       .catch(next);
   })
@@ -32,10 +42,12 @@ export default Router()
 
   .patch('/:id', (req, res, next) => {
     const { id } = req.params;
-    const { dateResolved } = req.body;
+    const { resolvedDate } = req.body;
 
-    Issue.findByIdAndUpdate(id, { dateResolved }, { new: true })
+    Issue
+      .findByIdAndUpdate(id,
+        { resolvedDate },
+        { new: true })
       .then(updatedIssue => res.json(updatedIssue))
       .catch(next);
   });
-
