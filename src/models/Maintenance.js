@@ -1,16 +1,17 @@
-const mongoose = require('mongoose');
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 const maintenanceSchema = new Schema({
-  dateReported: {
-    type: String
+  startDate: {
+    type: Date,
+    required: true
   },
   user: {
     type: String,
     required: true
   },
-  truckId: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Truck',
+  truck: {
+    type: Types.ObjectId,
+    ref: 'Truck',
     required: true
   },
   levelOfUrgency: {
@@ -22,8 +23,8 @@ const maintenanceSchema = new Schema({
     type: String,
     enum: ['Routine', 'Corrective']
   },
-  dateResolved: {
-    type: String
+  resolvedDate: {
+    type: Date
   },
   descriptionOfMaintenancePerformed: [{
     _id: false,
@@ -44,8 +45,9 @@ const maintenanceSchema = new Schema({
     type: Boolean,
     default: true
   },
-  issueId: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Issue'
+  issue: {
+    type: Types.ObjectId,
+    ref: 'Issue'
   }
 });
 

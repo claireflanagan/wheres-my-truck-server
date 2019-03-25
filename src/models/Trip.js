@@ -1,12 +1,17 @@
-const mongoose = require('mongoose');
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 const tripSchema = new Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'User'
+  user: {
+    type: String,
+    required: true
+  },
+  truck: {
+    type: Types.ObjectId,
+    ref: 'Truck'
   },
   startDate: {
-    type: String
+    type: Date,
+    required: true
   },
   endDate: {
     type: String
@@ -14,7 +19,7 @@ const tripSchema = new Schema({
   tripPurpose: {
     type: String
   },
-  gotLocation: {
+  startLocation: {
     type: String,
     required: true
   },

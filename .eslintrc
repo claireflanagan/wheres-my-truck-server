@@ -11,8 +11,7 @@
     "window": true
   },
   "plugins": [
-    "babel",
-    "react"
+    "babel"
   ],
   "env": {
     "es6": true,
@@ -20,8 +19,7 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
   "rules": {
     "no-console": "warn",
@@ -86,7 +84,6 @@
     ],
     "array-bracket-spacing": "error",
     "babel/no-invalid-this": 1,
-    "babel/semi": 1,
-    "react/prop-types": "off"
+    "babel/semi": 0
   }
 }
